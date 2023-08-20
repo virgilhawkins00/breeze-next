@@ -1,5 +1,23 @@
+import { Provider } from 'react-redux'
 import 'tailwindcss/tailwind.css'
+import '../style/global.css'
 
-const App = ({ Component, pageProps }) => <Component {...pageProps} />
+import FirebaseAuthState from '../config/FirebaseAuthState'
+import store from '../store/store'
+import Layout from '../components/Layout'
 
-export default App
+function MyApp({ Component, pageProps }) {
+  return (
+    <>
+      <Provider store={store}>
+        <FirebaseAuthState>
+          <Layout>
+            <Component  {...pageProps} />
+          </Layout>
+        </FirebaseAuthState>
+      </Provider>
+    </>
+  )
+}
+
+export default MyApp
